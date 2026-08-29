@@ -1,0 +1,43 @@
+# URSCT enhancement training with 0/45/90-degree images as three channels.
+GPU: [0]
+
+MODEL_DETAIL:
+  IN_CHANS: 3
+  OUT_CHANS: 3
+  IMG_SIZE: [256, 256]
+  PATCH_SIZE: 2
+  WIN_SIZE: 8
+  EMB_DIM: 32
+  DEPTH_EN: [8, 8, 8, 8]
+  HEAD_NUM: [8, 8, 8, 8]
+  MLP_RATIO: 4.0
+  QKV_BIAS: true
+  QK_SCALE: 8
+  DROP_RATE: 0
+  ATTN_DROP_RATE: 0.0
+  DROP_PATH_RATE: 0.1
+  APE: false
+  PATCH_NORM: true
+  USE_CHECKPOINTS: false
+
+OPTIM:
+  BATCH: 2
+  EPOCHS: 200
+  LR_INITIAL: 5.0e-4
+  LR_MIN: 1.0e-6
+  WARMUP_EPOCHS: 3
+  BETA1: 0.9
+
+TRAINING:
+  MODEL_NAME: polar_20scenes_Enh
+  DATA_ROOT: dataset/Polar_data
+  NUM_SCENES: 20
+  VAL_SCENES: 4
+  SPLIT_SEED: 4
+  GLOBAL_SEED: 4
+  TRAIN_PS: [256, 256]
+  VAL_PS: [256, 256]
+  VAL_INTERVAL: 5
+  NUM_WORKERS: 4
+  AMP: true
+  SAVE_DIR: exps
